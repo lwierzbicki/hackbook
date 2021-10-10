@@ -35,5 +35,41 @@ Get-UserProperty -Properties pwdlastset
 Find-UserField -SearchField Description -SearchTerm "built"
 ```
 
+Get OU
+```powershell
+Get-NetOU
+Get-NetOU StudentMachines | %{Get-NetComputer -ADSPath $_}
+```
+
+Get GPO
+```powershell
+Get-NetGPO
+(Get-NetOU StudentMachines -FullData).gplink
+Get-NetGPO -ADSpath 'LDAP://cn={3E04167E-C2B6-4A9A-8FB7-C811158DC97C},cn=policies,cn=system,DC=dollarcorp,DC=moneycorp,DC=local'
+Get-NetGPO -GPOName "{3E04167E-C2B6-4A9A-8FB7-C811158DC97C}"
+Get-GPO -Guid [objectguid]
+Find-GPOComputerAdmin - Computername dcorp-student1.dollarcorp.moneycorp.local
+Find-GPOLocation -UserName student1 -Verbose
+```
+
+Get ACLs
+```powershell
+Get-ObjectAcl -SamAccountName "users" -ResolveGUIDs -Verbose
+Get-ObjectAcl -SamAccountName "users" -ResolveGUIDs | Format-Table IdentityReference,ActiveDirectoryRights,AccessControlType
+Get-ObjectAcl -SamAccountName "Domain Admins" -ResolveGUIDs
+Invoke-ACLScanner -ResolveGUIDs | ?{$_.IdentityReference -match "student"}
+Invoke-ACLScanner -ResolveGUIDs | ?{$_.IdentityReference -match "RDPUsers"}
+```
+
+Get Domain Data
+```powershell
+Get-NetDomain
+Get-NetDomain -Domain moneycorp.local
+Get-DomainSID
+Get-DomainPolicy
+(Get-DomainPolicy)."system access"
+(Get-DomainPolicy -domain moneycorp.local)."system access"
+Get-NetDomainController -Domain moneycorp.local
+```
 
 ### Attack
