@@ -4,9 +4,13 @@
 
 ### Setup
 
-Turn off AMSI 
+Bypass Execution Policy
 ```powershell
 powershell -ep bypass
+```
+
+Turn off AMSI 
+```powershell
 Set-MpPreference -DisableRealtimeMonitoring $true
 Set-MpPreference -DisableIOAVProtection $true
 ```
