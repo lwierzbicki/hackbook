@@ -70,10 +70,10 @@ Invoke-BloodHound -CollectionMethod All -ExcludeDC
 ```
 
 
-
 #### PowerView
 
 [PowerView](https://github.com/lwierzbicki/PowerSploit/tree/master/Recon)
+[PowerSploit](https://powersploit.readthedocs.io)
 
 Get all the users
 ```powershell
@@ -123,6 +123,27 @@ Get-DomainPolicy
 (Get-DomainPolicy -domain moneycorp.local)."system access"
 Get-NetDomainController -Domain moneycorp.local
 ```
+
+Enumerate all domains in the current forest and their trust
+```powershell
+Get-NetForestDomain -Verbose
+Get-NetDomainTrust
+Get-NetForestDomain -Verbose | Get-NetDomainTrust
+Get-NetForestDomain -Verbose | Get-NetDomainTrust | ?{$_.TrustType -eq 'External'}
+Get-NetDomainTrust | ?{$_.TrustType -eq 'External'}
+Get-NetForestDomain -Forest eurocorp.local -Verbose | Get-NetDomainTrust
+```
+
+Check local admin priv on any other machines
+```powershell
+Invoke-UserHunter -CheckAccess
+```
+
+Go hunting for active user sessions
+```
+Invoke-UserHunter -showall -Credential $cred -ComputerName workstation04 | Format-Table -Property userdomain, username,computername, ipaddress
+```
+
 
 ### Attack
 
