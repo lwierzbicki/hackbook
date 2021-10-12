@@ -1,5 +1,7 @@
 # Privilege Escalation
 
+[PowerUp](https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc)
+
 # Active Directory
 
 ## Setup
