@@ -72,8 +72,8 @@ Invoke-BloodHound -CollectionMethod All -ExcludeDC
 
 #### PowerView
 
-[PowerView](https://github.com/lwierzbicki/PowerSploit/tree/master/Recon)
-[PowerSploit](https://powersploit.readthedocs.io)
+- [PowerView](https://github.com/lwierzbicki/PowerSploit/tree/master/Recon)
+- [PowerSploit](https://powersploit.readthedocs.io)
 
 Get all the users
 ```powershell
