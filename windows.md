@@ -63,6 +63,25 @@ runas /user:[Domain]\[user] cmd
 
 ## Enumeration
 
+Current privs
+```powershell
+whoami /priv
+```
+WMI from powershell
+```powershell
+gwmi -Class win32_computersystem -ComputerName dcorp-dc.dollarcorp.moneycorp.local
+```
+Get Process name and its owner
+```powershell
+Get-Process -IncludeUserName
+```
+
+Get current domain
+```powershell
+$ADClass = [System.DirectoryServices.ActiveDirectory.Domain];$ADClass::GetCurrentDomain()
+```
+
+
 #### Bloodhound
 ```powershell
 Invoke-BloodHound -CollectionMethod All
