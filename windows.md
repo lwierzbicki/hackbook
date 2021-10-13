@@ -159,7 +159,7 @@ Invoke-UserHunter -CheckAccess
 ```
 
 Go hunting for active user sessions
-```
+```powershell
 Invoke-UserHunter -showall -Credential $cred -ComputerName workstation04 | Format-Table -Property userdomain, username,computername, ipaddress
 ```
 
