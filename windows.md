@@ -101,6 +101,9 @@ Get all the users
 ```powershell
 Get-NetUser
 Get-NetUser | select -ExpandProperty samaccountname
+$user = "usfun\db1user"
+$pass = ConvertTo-SecureString -String "Vjltv1Enivad1232" -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential -ArgumentList $user, $pass
 $SecPassword = ConvertTo-SecureString 'Welcome2015' -AsPlainText -Force
 $Cred = New-Object System.Management.Automation.PSCredential('PWNY\jar-jar.binks', $SecPassword)
 Get-NetUser -Credential $Cred | Format-Table name, samaccountname, userprincipalname, description
