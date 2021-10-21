@@ -142,6 +142,10 @@ Set-DomainObject -Identity <username> -Set @{serviceprincipalname='just/whatever
 Set-DomainObject -Identity sqlreportuser -SET @{serviceprincipalname='sqlreportuser/funcrop.local'}
 Set-DomainObject -Identify sqlreportuser -Clear serviceprincipalname
 ```
+Check ACLs
+```powershell
+Invoke-ACLScanner | ?{$_.IdentityReferenceName -match 'jumpsrvadmin'}
+```
 
 ### Unconstrained Delegation
 Servers with uncontrained delegations
