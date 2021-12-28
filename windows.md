@@ -1,7 +1,7 @@
 # Table of contents
 
-[Transfer](#transfer)
-[Privilege escalation](#privilege-escalation)
+- [Transfer](#transfer)
+- [Privilege escalation](#privilege-escalation)
 
 
 # Transfer
