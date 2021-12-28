@@ -1,3 +1,20 @@
+# Transfer
+
+## Client - get files
+
+### HTTP
+
+### FTP
+
+### SMB
+
+## Server - host files
+
+HTTP server on port 80 
+```powershell
+Add-Type -AssemblyName "System.Web";$Hso=New-Object Net.HttpListener;$Hso.Prefixes.Add("http://+:80/");$Hso.Start();While ($Hso.IsListening){$HC=$Hso.GetContext();$HRes=$HC.Response;if($HC.Request.RawUrl -eq '/server/shutdown'){$Hso.Stop()};$HRes.Headers.Add("Content-Type",[System.Web.MimeMapping]::GetMimeMapping($HC.Request.RawUrl));$Stream=[System.IO.File]::OpenRead((Join-Path $Pwd ($HC.Request.RawUrl)));$HRes.ContentLength64=$Stream.Length;$Stream.CopyTo($HRes.OutputStream);$Stream.Close();$HRes.Close()};
+```
+
 # Privilege Escalation
 
 [PowerUp](https://github.com/PowerShellMafia/PowerSploit/tree/master/Privesc)
