@@ -1,5 +1,5 @@
 # hackbook
-Commands, oneliner and ready to use code snippets.
+Commands, oneliners and other copy-to-use commands.
 
 - [INFRA](/infra.md)
 - [Windows](/windows.md)
