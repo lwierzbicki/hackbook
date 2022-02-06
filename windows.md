@@ -1,7 +1,55 @@
 # Table of contents
 
+- [Enumeration](#enumeration)
 - [Transfer](#transfer)
 - [Privilege escalation](#privilege-escalation)
+
+## Enumeration
+
+### Named Pipe
+
+Get Named Pipes
+```
+[System.IO.Directory]::GetFiles("\\.\\pipe\\")
+get-childitem \\.\pipe\
+(get-childitem \\.\pipe\).FullName
+```
+Process Explorer from sysinternals. Use the "Find -> Find Handle or DLL..." option and enter the pattern "\Device\NamedPipe\".
+
+
+```
+$pipe = Get-NtNamedPipeFile "\Device\NamedPipe\AviraOptimizerHost"
+$pipe.SecurityDescriptor
+Get-Acl "C:\Windows\xxx.dll" | fl
+```
+
+Check privs on named pipes
+```
+accesschk64.exe \\.\pipe\Log_servernamepipe
+```
+
+
+### Service commands
+
+Check permission to service
+```
+sc sdshow [service]
+```
+
+Stop service
+```
+sc stop [service]
+```
+
+Start service
+```
+sc start [service]
+```
+
+Check if service start at boot up
+```
+sc qc [service]
+```
 
 ## Transfer
 
