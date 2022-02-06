@@ -3,10 +3,9 @@
 - [Transfer](#transfer)
 - [Privilege escalation](#privilege-escalation)
 
+## Transfer
 
-# Transfer
-
-## Client - get files
+### Client - get files
 
 #### HTTP
 
@@ -41,7 +40,7 @@ ftp -v -n -s:ftp.txt
 
 #### SMB
 
-## Server - host files
+### Server - host files
 
 HTTP server on port 80 
 ```powershell
