@@ -6,6 +6,30 @@
 
 ## Enumeration
 
+### General
+
+Get system version
+```powershell
+Get-WmiObject -Class win32_OperatingSystem | select Version,BuildNumber
+Get-WmiObject -Class Win32_OperatingSystem | select SystemDirectory,BuildNumber,SerialNumber,Version | ft
+```
+
+List / set execution policy
+```powershell
+Get-ExecutionPolicy -List
+Set-ExecutionPolicy Bypass -Scope Process
+```
+
+Check what Windows protection are turn on
+```powershell
+Get-MpComputerStatus | findstr "True"
+```
+
+Users
+```powershell
+Get-WmiObject -Class Win32_useraccount
+```
+
 ### Named Pipe
 
 Get Named Pipes
