@@ -30,6 +30,14 @@ Users
 Get-WmiObject -Class Win32_useraccount
 ```
 
+### Service
+
+Get service path
+```
+reg query "HKLM\System\CurrentControlSet\Services\<serviceName>" /v "ImagePath"
+$service = get-wmiobject -query 'select * from win32_service where name="winrm"'; echo $service.pathname
+```
+
 ### Named Pipe
 
 Get Named Pipes
