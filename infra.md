@@ -9,7 +9,10 @@ Get resolve local addresses in DNS server
 ```bash
 dnsrecon -r 192.168.33.0/24 -n 192.168.33.2 -d domain.corp -c $PWD/output.csv
 ```
-
+Masscan  on specified interface, all ports and max rate 300
+```bash 
+masscan -e ens4 -iL ips.txt -p0-65535 --max-rate 300 -oG scan.txt
+```
 Nmap scan - TCP/All ports/Service detection/Multi-output
 ```bash
 nmap -Pn -sV -p- 192.168.0.10 -oA output
@@ -22,3 +25,5 @@ Nmap scan - UDP/top 1000 ports/Service detection/Multi-output
 ```bash
 nmap -Pn -sV -sU 192.168.0.10 -oA output
 ```
+
+
