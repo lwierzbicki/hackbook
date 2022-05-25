@@ -1,7 +1,7 @@
 # Table of contents
 
 - [Enumeration](#enumeration)
-
+- [Services](#services)
 
 ## Enumeration
 
@@ -26,4 +26,12 @@ Nmap scan - UDP/top 1000 ports/Service detection/Multi-output
 nmap -Pn -sV -sU 192.168.0.10 -oA output
 ```
 
+## Services
 
+### NTML
+In wireshark recognize NTLMSSP on other ports by running lua script
+```lua
+local tcp_port_table = DissectorTable.get("tcp.port")
+local tcp_ntlmssp_dis = Dissector.get("ntlmssp")
+tcp_port_table:add(6901, tcp_ntlmssp_dis)
+```
