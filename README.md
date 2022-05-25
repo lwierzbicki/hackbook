@@ -7,4 +7,5 @@ Commands, oneliners and other copy-to-use commands.
 - [Windows](/windows.md)
 - [Linux](/linux.md)
 - [Database](/database.md)
+- [Password](/password.md)
 
