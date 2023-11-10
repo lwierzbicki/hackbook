@@ -12,6 +12,7 @@ Get system version
 ```powershell
 Get-WmiObject -Class win32_OperatingSystem | select Version,BuildNumber
 Get-WmiObject -Class Win32_OperatingSystem | select SystemDirectory,BuildNumber,SerialNumber,Version | ft
+systeminfo
 ```
 
 List / set execution policy
