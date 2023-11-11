@@ -6,6 +6,13 @@
 
 ## Enumeration
 
+### Search
+
+findstr /s /i AAAAAAA@AAAAAA *.*
+findstr /s /i "XXXXXXinjectionXXXXXX" "C:\ProgramData\*"
+
+
+
 ### General
 
 Get system version
@@ -383,3 +390,9 @@ Export kerberos tickets
 ```powershell
 Invoke-Mimikatz -Command '"kerberos::list /export"'
 ```
+
+
+## Windows Privilege Escalation
+
+https://github.com/AlessandroZ/BeRoot
+https://github.com/carlospolop/PEASS-ng
