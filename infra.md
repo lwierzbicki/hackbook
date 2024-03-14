@@ -27,6 +27,11 @@ Nmap scan - UDP/top 1000 ports/Service detection/Multi-output
 ```bash
 nmap -Pn -sV -sU 192.168.0.10 -oA output
 ```
+Get ports from grepable output
+```bash
+grep '^Host:' full.gnmap | grep 'Ports:' | cut -d ":" -f 3 | tr "," "\n" | cut -d "/" -f 1 | sort -u | uniq | tr "\n" "," > ports.txt
+```
+
 
 
 ## Services
@@ -113,6 +118,8 @@ snmp-check
 snmp-check 192.168.0.10 -c public
 snmpcheck ###
 snmpenum ###
+
+snmpbulkwalk -v 2c -c public [ip_address]
 
 ## WIFI
 
